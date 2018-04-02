@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<LibraryManagement.Models.BookModel>
+
+
+@{
+    ViewData["Title"] = "Available Books";
+}
+
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item"><strong>Available Books</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-2">
+    <div class="col-sm-6">
+        <form asp-action="SearchBooks" method="get" class="form-inline">
+            <div class="form-group d-flex mx-sm-3 mb-2">
+                <label for="searchQuery" class="sr-only"></label>
+                <input type="text" class="form-control" id="searchQuery" name="query" placeholder="Search by title, author, isbn, or genre" />
+                <button type="submit" class="btn btn-primary btn-md">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row mb-2 mt-2 p-3">
+    @foreach (var availableBook in Model)
+    {
+        <div class="card bg-light col-sm-3 mb-1">
+            <div class="card-body">
+                <h3 class="card-title">@availableBook.Title</h3>
+                <p class="card-text">
+                    @availableBook.Description
+                </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@availableBook.Genre</li>
+                <li class="list-group-item">@availableBook.Author</li>
+                <li class="list-group-item">@availableBook.ISBN</li>
+            </ul>
+            <div class="card-body">
+                <div class="form-group d-flex justify-content-center">
+                    @if (User.IsInRole("Member"))
+                    {
+                        <a asp-action="Borrow" asp-route-id="@availableBook.ISBN" 
+                            class="card-link btn btn-primary btn-sm">Borrow</a>
+                    }
+                    else
+                    {
+                        <a asp-action="EditBook" asp-controller="ManageBooks" asp-route-id="@availableBook.ISBN"
+                            class="card-link btn btn-primary btn-sm">Edit</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LibraryManagement.Models.TransactionModel>
+
+@{
+    ViewData["Title"] = "Borrowed Books";
+}
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item"><strong>Borrowed Books</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="container mt-2">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.TransactionID)</th>
+                    <th>@Html.DisplayNameFor(model => model.BorrowerName)</th>
+                    <th>@Html.DisplayNameFor(model => model.BookISBN)</th>
+                    <th>@Html.DisplayNameFor(model => model.BorrowDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.DueDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.TransactionID</td>
+                        <td>@book.BorrowerName</td>
+                        <td>@book.BookISBN</td>
+                        <td>@book.BorrowDate</td>
+                        <td>@book.DueDate</td>
+                        <td>@book.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

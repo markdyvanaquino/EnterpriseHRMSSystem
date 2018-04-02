@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LibraryManagement.Models.TransactionModel>
+
+@{
+    ViewData["Title"] = "Book Transactions";
+}
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item"><strong>Book Transactions</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-2">
+    <div class="col-sm-6">
+        <form asp-action="SearchBooks" method="get" class="form-inline">
+            <div class="form-group d-flex mx-sm-3 mb-2">
+                <label for="searchQuery" class="sr-only"></label>
+                <input type="text" class="form-control" id="searchQuery" name="query" placeholder="Search by transaction id, user id, full name, or isbn" />
+                <button type="submit" class="btn btn-primary btn-md">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TransactionID)</th>
+                <th>@Html.DisplayNameFor(model => model.UserID)</th>
+                <th>@Html.DisplayNameFor(model => model.BorrowerName)</th>
+                <th>@Html.DisplayNameFor(model => model.BookISBN)</th>
+                <th>@Html.DisplayNameFor(model => model.TransactionType)</th>
+                <th>@Html.DisplayNameFor(model => model.BorrowDate)</th>
+                <th>@Html.DisplayNameFor(model => model.DueDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.TransactionID</td>
+                    <td>@transaction.UserID</td>
+                    <td>@transaction.BorrowerName</td>
+                    <td>@transaction.BookISBN</td>
+                    <td>@transaction.TransactionType</td>
+                    <td >@transaction.BorrowDate</td>
+                    <td>@transaction.DueDate</td>
+                    <td>@transaction.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

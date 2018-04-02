@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using LibraryManagement.Areas.Identity.Data
+
+@inject SignInManager<LibraryManagementUser> SignInManager
+@inject UserManager<LibraryManagementUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <ul class="navbar-nav flex-grow-1">
+        
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="Index" asp-controller="Home">Dashboard</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="ListOfBooksPage" asp-controller="Books">Books</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="ListOfAvailableBooksPage" asp-controller="AvailableBooks" >Available Books</a>
+            </li>
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="BorrowedBooksPage" asp-controller="BorrowedBooks">Borrowed Books</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="BookTransactionsPage" asp-controller="BookTransactions">Book Transactions</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="ManageBooksPage" asp-controller="ManageBooks">Manage Books</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="ListOfUserspage" asp-controller="Users">Users</a>
+            </li>
+        }else
+        {
+            <li class="nav-item active">
+                <a class="nav-link " asp-action="ListOfBorrowedBooksPage" asp-controller="CurrentBorrows">Current Borrows</a>
+            </li>
+        }
+        
+    </ul>
+}

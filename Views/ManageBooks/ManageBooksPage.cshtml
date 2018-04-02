@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BookModel>
+
+@{
+    ViewData["Title"] = "Manage Book";
+}
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item"><strong>Manage Books</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="container mt-2">
+   <div class="d-flex">
+        <div class="col-sm-6">
+            <a class="btn btn-primary" asp-action="CreateBook">Add Book</a>
+        </div>
+        <div class="col-sm-6">
+            <form asp-action="SearchBooks" method="get" class="form-inline">
+                <div class="form-group d-flex mx-sm-3 mb-2">
+                    <label for="searchQuery" class="sr-only"></label>
+                    <input type="text" class="form-control" id="searchQuery" name="query" placeholder="Search by title, author, isbn, or genre" />
+                    <button type="submit" class="btn btn-primary btn-md">Search</button>
+                </div>
+            </form>
+        </div>
+   </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Genre)</th>
+                <th>@Html.DisplayNameFor(model => model.Author)</th>
+                <th>@Html.DisplayNameFor(model => model.ISBN)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(item => book.Title)</td>
+                    <td>@Html.DisplayFor(item => book.Genre)</td>
+                    <td>@Html.DisplayFor(item => book.Author)</td>
+                    <td>@Html.DisplayFor(item => book.ISBN)</td>
+                    <td colspan="2">
+                        <a asp-action="EditBook" asp-route-id="@book.ISBN"class="btn btn-secondary btn-sm">Edit</a>
+                        <a asp-action="BookDetails" asp-route-id="@book.ISBN"class="btn btn-secondary btn-sm">Details</a>
+                        <a asp-action="DeleteBook" asp-route-id="@book.ISBN" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,54 @@
+﻿@model LibraryManagement.Models.BookModel
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+<div class="row">
+    <div class="col-lg-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item">
+                    <a asp-action="ManageBooksPage" class="text-dark"><strong>Manage Book</strong></a>
+                </li>
+                <li class="breadcrumb-item active"><strong>Edit Book</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-sm-4">
+        <form method="post" asp-action="EditBook">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ISBN" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label"></label>
+                <input asp-for="Genre" class="form-control">
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control">
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control" disabled>
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <input type="submit" value="Save" class="btn btn-primary btn-sm">
+                <a asp-action="ManageBooksPage" class="btn btn-secondary btn-sm">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

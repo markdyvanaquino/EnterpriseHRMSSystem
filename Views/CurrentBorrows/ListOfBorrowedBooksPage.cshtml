@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryManagement.Models.BookModel>
+
+
+@{
+    ViewData["Title"] = "Current Borrows";
+}
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item"><strong>Current Borrows</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row mt-2">
+    @foreach (var borrowedBook in Model)
+    {
+        <div class="card bg-light col-sm-3 pb-1">
+            <div class="card-body">
+                <h3 class="card-title">@borrowedBook.Title</h3>
+                <p class="card-text">@borrowedBook.Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@borrowedBook.Genre</li>
+                <li class="list-group-item">@borrowedBook.Author</li>
+                <li class="list-group-item">@borrowedBook.ISBN</li>
+            </ul>
+            <div class="card-body">
+                <div class="form-group d-flex justify-content-center">
+                    <form asp-action="ReturnBook" asp-route-id="@borrowedBook.ISBN" method="post">
+                        <button type="submit" class="btn btn-success btn-sm">Return Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

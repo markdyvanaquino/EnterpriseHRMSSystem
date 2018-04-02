@@ -1,0 +1,57 @@
+﻿@model LibraryManagement.Models.BookModel
+
+@{
+    ViewData["Title"] = "Borrow";
+}
+<div class="row">
+    <div class="col-sm-12 bg-light">
+        <nav>
+            <ul class="breadcrumb pt-2">
+                <li class="breadcrumb-item">
+                    <a asp-action="ListOfAvailableBooksPage" class="text-dark">
+                        <strong>Available Books</strong>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active"><strong>Borrow</strong></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<dl class="row mt-2">
+    <dt classaction="col-sm-2">
+        @Html.DisplayNameFor(model => model.Title)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Genre)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Genre)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Author)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Author)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.ISBN)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ISBN)
+    </dd>
+</dl>
+<div class="form-group mt-1">
+    <form asp-action="Borrow" asp-route-id="@Model.ISBN" method="post">
+         <button type="submit" class="btn btn-success btn-sm">Borrow Book</button>
+    </form>
+    <a asp-action="ListOfAvailableBooksPage" class="btn btn-primary btn-sm">Back</a>
+</div>
